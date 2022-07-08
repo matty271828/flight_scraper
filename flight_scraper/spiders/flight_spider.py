@@ -19,10 +19,10 @@ class FlightSpider(scrapy.Spider):
     # Using a dummy website to start scrapy request
     def start_requests(self):
         routes = {
-        'LPL' : ['BVA', 'FRA', 'BCN', 'GVA', 'GNB', 'NCE', 'EGC', 'REU', 'AMS', 'CRL', 'SZG', 'BGY', 'MAD', 'ALC', 'AGP', 'FAO', 'OPO', 'GDN', 'KTW', 'WMI', 'POZ'],
-        'MAN' : ['CGN', 'CDG', 'VLC', 'BVA', 'BSL', 'CMF', 'LYS', 'GNB', 'NCE', 'MRS', 'BZR', 'CCF', 'BER', 'HAM', 'DUS', 'MUC', 'BLL', 'CPH', 'AAL'], 
-        'LHR' : ['CDG', 'BER', 'GVA', 'LYS', 'GNB', 'NCE', 'MRS', 'TLS', 'BCN', 'DUS', 'FRA', 'CGN', 'HAJ', 'HAM', 'PRG'],
-        'BHX' : ['CDG', 'BRU', 'ORY', 'NTE', 'BOD', 'GNB', 'AVN', 'VRN', 'BGY', 'ZRH', 'INN', 'SZG', 'MUC', 'PRG', 'BER', 'GRO', 'BCN', 'MAD', 'REU'],
+        'LPL' : ['BVA', 'FRA', 'BCN', 'GVA', 'GNB', 'NCE', 'EGC', 'REU', 'AMS', 'CRL', 'SZG', 'BGY', 'MAD', 'ALC', 'AGP', 'FAO', 'OPO', 'GDN', 'KTW', 'POZ'],
+        'MAN' : ['CGN', 'CDG', 'VLC', 'BVA', 'CMF', 'LYS', 'GNB', 'NCE', 'MRS', 'BZR', 'CCF', 'BER', 'HAM', 'DUS', 'MUC', 'BLL', 'CPH', 'AAL'], 
+        'LHR' : ['CDG', 'GVA', 'LYS', 'GNB', 'NCE', 'MRS', 'TLS', 'BCN', 'DUS', 'FRA', 'CGN', 'HAJ', 'HAM', 'PRG'],
+        'BHX' : ['CDG', 'BRU', 'ORY', 'NTE', 'BOD', 'GNB', 'AVN', 'VRN', 'BGY', 'ZRH', 'INN', 'SZG', 'MUC', 'PRG', 'GRO', 'BCN', 'MAD', 'REU'],
         'GVA' : ['LPL', 'MAN', 'LHR'], 
         'GNB' : ['LPL', 'MAN', 'LHR', 'BHX'], 
         'CRL' : ['LPL'], 
@@ -51,7 +51,6 @@ class FlightSpider(scrapy.Spider):
         'MRS' : ['MAN'], 
         'BZR' : ['MAN'], 
         'CCF' : ['MAN'],
-        'BER' : ['MAN', 'BHX', 'LHR'],
         'DUS' : ['MAN', 'LHR'],
         'TLS' : ['LHR'],
         'CGN' : ['LHR'],
@@ -74,7 +73,6 @@ class FlightSpider(scrapy.Spider):
         'OPO' : ['LPL'],
         'GDN' : ['LPL'],
         'KTW' : ['LPL'],
-        'WMI' : ['LPL'],
         'POZ' : ['LPL'],
         'BLL' : ['MAN'],
         'CPH' : ['MAN'],
