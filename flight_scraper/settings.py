@@ -31,7 +31,7 @@ CONCURRENT_REQUESTS = 15
 #CONCURRENT_REQUESTS_PER_IP = 4
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False

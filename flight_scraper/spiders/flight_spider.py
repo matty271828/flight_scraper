@@ -82,18 +82,18 @@ class FlightSpider(scrapy.Spider):
         url = "http://quotes.toscrape.com"
 
         # To search single route
-        #yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LPL', 'destination_city':'FCO'})
+        yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LHR', 'destination_city':'JFK'})
         
         # Iterate over multiple origins
-        for key in routes:
-            list_destinations = routes[key]
+        #for key in routes:
+            #list_destinations = routes[key]
 
             # Inner loop over available destinations at origin
             # Set dont_filter to 'True' to allow multiple requests to be sent
-            for i in range(0, len(list_destinations)):
-                yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=True, cb_kwargs={'source_city':key, 'destination_city':list_destinations[i]})
+            #for i in range(0, len(list_destinations)):
+                #yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=True, cb_kwargs={'source_city':key, 'destination_city':list_destinations[i]})
                 # Wait before proceeding to next loop - IMPORTANT
-                time.sleep(random.randint(2, 5))
+                #time.sleep(random.randint(2, 5))
 
     def parse_prices(self, response, source_city, destination_city):
         #--------------------------------- Parameters ------------------------------------------
@@ -110,22 +110,27 @@ class FlightSpider(scrapy.Spider):
         departure_date_XPATH = '//*[@id="yDmH0d"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div[1]/div/input'
         calendar_grid_base_XPATH = '//*[@id="ow62"]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div'
         calendar_button_XPATH = '//*[@id="ow62"]/div[2]/div/div[2]/div[2]/div/div/div[3]/div/button'
+        accept_cookies_XPATH = '//*[@id="yDmH0d"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[2]/div/div/button'
 
         #--------------------------------- Begin driving browser ------------------------------------------
         # To open a new browser window and navigate it
         driver = webdriver.Chrome()  
 
         # Create an instance of headless ChromeDriver
-        options = webdriver.ChromeOptions()
-        options.add_argument("headless")
-        desired_capabilities = options.to_capabilities()
-        driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        #options = webdriver.ChromeOptions()
+        #options.add_argument("headless")
+        #desired_capabilities = options.to_capabilities()
+        #driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
 
         # Open page
         driver.get(url)
 
         # Wait for page to load
         driver.implicitly_wait(10)
+
+        # TODO - Add clicking on accepting cookies button
+        accept_cookies = driver.find_element_by_xpath(accept_cookies_XPATH)
+        accept_cookies.click()
 
         # Source city selection steps
         fly_from = driver.find_element_by_xpath(source_city_XPATH)
@@ -165,7 +170,7 @@ class FlightSpider(scrapy.Spider):
         departure_date_element.send_keys(departure_date)
         departure_date_element.send_keys(Keys.ENTER)
 
-        time.sleep(20)
+        time.sleep(5)
 
         # Explicit wait
         wait = WebDriverWait(driver, 5)

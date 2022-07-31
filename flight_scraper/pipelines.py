@@ -26,7 +26,7 @@ class FlightScraperPipeline:
 
     def process_item(self, item, spider):
         try:
-            self.cur.execute("INSERT INTO flights_prototype_data (day, month, year, origin_id, destination_id, price) VALUES (%s, %s, %s, %s, %s, %s)", (item['day'], item['month'], item['year'], item['origin_id'], item['destination_id'], item['price']))
+            self.cur.execute("INSERT INTO flights_data (day, month, year, origin_id, destination_id, price) VALUES (%s, %s, %s, %s, %s, %s)", (item['day'], item['month'], item['year'], item['origin_id'], item['destination_id'], item['price']))
         except psycopg2.errors.InFailedSqlTransaction:
             pass    
 
