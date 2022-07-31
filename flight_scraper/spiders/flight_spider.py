@@ -82,7 +82,7 @@ class FlightSpider(scrapy.Spider):
         url = "http://quotes.toscrape.com"
 
         # To search single route
-        yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LHR', 'destination_city':'JFK'})
+        yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LHR', 'destination_city':'LAX'})
         
         # Iterate over multiple origins
         #for key in routes:
@@ -114,13 +114,13 @@ class FlightSpider(scrapy.Spider):
 
         #--------------------------------- Begin driving browser ------------------------------------------
         # To open a new browser window and navigate it
-        driver = webdriver.Chrome()  
+        #driver = webdriver.Chrome()  
 
         # Create an instance of headless ChromeDriver
-        #options = webdriver.ChromeOptions()
-        #options.add_argument("headless")
-        #desired_capabilities = options.to_capabilities()
-        #driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        options = webdriver.ChromeOptions()
+        options.add_argument("headless")
+        desired_capabilities = options.to_capabilities()
+        driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
 
         # Open page
         driver.get(url)
