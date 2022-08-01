@@ -9,6 +9,7 @@ import time
 import random
 
 from flight_scraper.items import FlightScraperItem
+from run_sql import run_sql
 
 # Run this spider by typing entering 'scrapy crawl flight_spider -o prices.json' into the command line
 
@@ -18,82 +19,24 @@ class FlightSpider(scrapy.Spider):
 
     # Using a dummy website to start scrapy request
     def start_requests(self):
-        routes = {
-        'LPL' : ['BVA', 'FRA', 'BCN', 'GVA', 'GNB', 'NCE', 'EGC', 'REU', 'AMS', 'CRL', 'SZG', 'BGY', 'MAD', 'ALC', 'AGP', 'FAO', 'OPO', 'GDN', 'KTW', 'POZ'],
-        'MAN' : ['CGN', 'CDG', 'VLC', 'BVA', 'CMF', 'LYS', 'GNB', 'NCE', 'MRS', 'BZR', 'CCF', 'BER', 'HAM', 'DUS', 'MUC', 'BLL', 'CPH', 'AAL'], 
-        'LHR' : ['CDG', 'GVA', 'LYS', 'GNB', 'NCE', 'MRS', 'TLS', 'BCN', 'DUS', 'FRA', 'CGN', 'HAJ', 'HAM', 'PRG'],
-        'BHX' : ['CDG', 'BRU', 'ORY', 'NTE', 'BOD', 'GNB', 'AVN', 'VRN', 'BGY', 'ZRH', 'INN', 'SZG', 'MUC', 'PRG', 'GRO', 'BCN', 'MAD', 'REU'],
-        'GVA' : ['LPL', 'MAN', 'LHR'], 
-        'GNB' : ['LPL', 'MAN', 'LHR', 'BHX'], 
-        'CRL' : ['LPL'], 
-        'FRA' : ['LPL', 'MAN', 'LHR'],
-        'SZG' : ['LPL', 'LHR'],
-        'BGY' : ['LPL', 'BHX'],
-        'BUD' : ['LPL'],
-        'ZAD' : ['LPL'],
-        'HAM' : ['MAN', 'LHR'],
-        'MUC' : ['MAN', 'BHX'],
-        'MXP' : ['MAN'],
-        'MRS' : ['LHR'],
-        'AMS' : ['LHR', 'LPL'], 
-        'LUX' : ['LHR'], 
-        'WAW' : ['LHR'], 
-        'BVA' : ['LPL', 'MAN'],
-        'BCN' : ['LPL', 'LHR', 'BHX'],
-        'NCE' : ['LPL', 'MAN', 'LHR'],
-        'EGC' : ['LPL'],
-        'REU' : ['LPL', 'BHX'],
-        'CDG' : ['MAN', 'LHR', 'BHX'],
-        'VLC' : ['MAN'], 
-        'BSL' : ['MAN'],
-        'CMF' : ['MAN'],
-        'LYS' : ['MAN', 'LHR'], 
-        'MRS' : ['MAN'], 
-        'BZR' : ['MAN'], 
-        'CCF' : ['MAN'],
-        'DUS' : ['MAN', 'LHR'],
-        'TLS' : ['LHR'],
-        'CGN' : ['LHR'],
-        'HAJ' : ['LHR'],
-        'PRG' : ['LHR', 'BHX'],
-        'BRU' : ['BHX'], 
-        'ORY' : ['BHX'], 
-        'NTE' : ['BHX'], 
-        'BOD' : ['BHX'], 
-        'AVN' : ['BHX'], 
-        'VRN' : ['BHX'], 
-        'ZRH' : ['BHX'],
-        'INN' : ['BHX'], 
-        'SZG' : ['BHX'],
-        'GRO' : ['BHX'], 
-        'MAD' : ['BHX', 'LPL'], 
-        'ALC' : ['LPL'], 
-        'AGP' : ['LPL'],
-        'FAO' : ['LPL'],
-        'OPO' : ['LPL'],
-        'GDN' : ['LPL'],
-        'KTW' : ['LPL'],
-        'POZ' : ['LPL'],
-        'BLL' : ['MAN'],
-        'CPH' : ['MAN'],
-        'AAL' : ['MAN']
-        }
+        # Retrieve airport routes from database
+        sql = "SELECT origin_id, destination_id FROM airport_routes"
+        routes = run_sql(sql)
 
         url = "http://quotes.toscrape.com"
 
         # To search single route
-        yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LHR', 'destination_city':'LAX'})
+        #yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LHR', 'destination_city':'DXB'})
         
         # Iterate over multiple origins
-        #for key in routes:
-            #list_destinations = routes[key]
+        for i in range(0, 5):
+            # Output to terminal
+            print(f"Searching: {routes[i][0]} -> {routes[i][1]}")
 
-            # Inner loop over available destinations at origin
             # Set dont_filter to 'True' to allow multiple requests to be sent
-            #for i in range(0, len(list_destinations)):
-                #yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=True, cb_kwargs={'source_city':key, 'destination_city':list_destinations[i]})
-                # Wait before proceeding to next loop - IMPORTANT
-                #time.sleep(random.randint(2, 5))
+            yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=True, cb_kwargs={'source_city':routes[i][0], 'destination_city':routes[i][1]})
+            # Wait before proceeding to next loop - IMPORTANT
+            time.sleep(random.randint(2, 5))
 
     def parse_prices(self, response, source_city, destination_city):
         #--------------------------------- Parameters ------------------------------------------
