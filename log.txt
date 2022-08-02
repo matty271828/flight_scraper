@@ -1,0 +1,347 @@
+INFO: Scrapy 2.6.1 started (bot: flight_scraper)
+INFO: Versions: lxml 4.7.1.0, libxml2 2.9.12, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 21.7.0, Python 3.8.3 (v3.8.3:6f8c8320e9, May 13 2020, 16:29:34) - [Clang 6.0 (clang-600.0.57)], pyOpenSSL 21.0.0 (OpenSSL 1.1.1m  14 Dec 2021), cryptography 36.0.1, Platform macOS-10.15.7-x86_64-i386-64bit
+INFO: Overridden settings:
+{'BOT_NAME': 'flight_scraper',
+ 'CONCURRENT_REQUESTS': 30,
+ 'DOWNLOAD_DELAY': 3,
+ 'NEWSPIDER_MODULE': 'flight_scraper.spiders',
+ 'SPIDER_MODULES': ['flight_scraper.spiders']}
+DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+INFO: Telnet Password: c685b3fcd1bd7d61
+INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+INFO: Enabled item pipelines:
+['flight_scraper.pipelines.FlightScraperPipeline']
+INFO: Spider opened
+INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+INFO: Telnet console listening on 127.0.0.1:6023
+INFO: REQUESTS STARTED
+INFO: Searching: LPL -> IOM
+INFO: Searching: IOM -> LPL
+INFO: Searching: LPL -> DUB
+INFO: Searching: DUB -> LPL
+INFO: Searching: LPL -> BFS
+INFO: Searching: BFS -> LPL
+DEBUG: Crawled (200) <GET http://quotes.toscrape.com> (referer: None)
+DEBUG: Crawled (200) <GET http://quotes.toscrape.com> (referer: None)
+INFO: Searching: LPL -> PMI
+DEBUG: Crawled (200) <GET http://quotes.toscrape.com> (referer: None)
+INFO: Searching: PMI -> LPL
+DEBUG: Crawled (200) <GET http://quotes.toscrape.com> (referer: None)
+INFO: Number of open requests: 1
+DEBUG: POST http://127.0.0.1:55025/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "platformName": "any", "goog:chromeOptions": {"extensions": [], "args": ["headless"]}}}, "desiredCapabilities": {"browserName": "chrome", "version": "", "platform": "ANY", "goog:chromeOptions": {"extensions": [], "args": ["headless"]}}}
+DEBUG: Starting new HTTP connection (1): 127.0.0.1:55025
+DEBUG: http://127.0.0.1:55025 "POST /session HTTP/1.1" 200 800
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/url {"url": "https://www.google.com/travel/flights"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/url HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/timeouts {"implicit": 10000}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/timeouts HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[2]/div/div/button"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/6c19d10d-4a26-409d-a7ec-239009bec06d/click {"id": "6c19d10d-4a26-409d-a7ec-239009bec06d"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/6c19d10d-4a26-409d-a7ec-239009bec06d/click HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"i14\"]/div[1]/div/div/div[1]/div/div/input"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/16b757a3-4cd8-4a3d-abc1-832df0c98d2d/click {"id": "16b757a3-4cd8-4a3d-abc1-832df0c98d2d"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/16b757a3-4cd8-4a3d-abc1-832df0c98d2d/click HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"i14\"]/div[6]/div[2]/div[2]/div[1]/div/input"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/2572970f-82cb-4d75-9d22-0724053d2c85/value {"text": "IOM", "value": ["I", "O", "M"], "id": "2572970f-82cb-4d75-9d22-0724053d2c85"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/2572970f-82cb-4d75-9d22-0724053d2c85/value HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/2572970f-82cb-4d75-9d22-0724053d2c85/value {"text": "\ue007", "value": ["\ue007"], "id": "2572970f-82cb-4d75-9d22-0724053d2c85"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/2572970f-82cb-4d75-9d22-0724053d2c85/value HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/timeouts {"implicit": 5000}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/timeouts HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"i14\"]/div[4]/div/div/div[1]/div/div/input"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/94a9c175-119e-4f07-a2e9-2e4179a7437a/click {"id": "94a9c175-119e-4f07-a2e9-2e4179a7437a"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/94a9c175-119e-4f07-a2e9-2e4179a7437a/click HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"i14\"]/div[6]/div[2]/div[2]/div[1]/div/input"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/84b726fe-622c-4526-bc6e-be89543724c4/value {"text": "LPL", "value": ["L", "P", "L"], "id": "84b726fe-622c-4526-bc6e-be89543724c4"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/84b726fe-622c-4526-bc6e-be89543724c4/value HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/84b726fe-622c-4526-bc6e-be89543724c4/value {"text": "\ue007", "value": ["\ue007"], "id": "84b726fe-622c-4526-bc6e-be89543724c4"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/84b726fe-622c-4526-bc6e-be89543724c4/value HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"yDmH0d\"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[1]/div[1]/div[1]/div/div[1]/div[1]/div/div[1]/div[1]/div/button/span[1]"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/ef825e38-6892-406d-86a8-fe44554261aa/click {"id": "ef825e38-6892-406d-86a8-fe44554261aa"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/ef825e38-6892-406d-86a8-fe44554261aa/click HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/timeouts {"implicit": 2000}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/timeouts HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"ow19\"]/div[2]/div[2]/ul/li[2]"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/f280eb8d-e291-4a71-941b-8c7deca71e33/click {"id": "f280eb8d-e291-4a71-941b-8c7deca71e33"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/f280eb8d-e291-4a71-941b-8c7deca71e33/click HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"yDmH0d\"]/c-wiz[2]/div/div[2]/c-wiz/div/c-wiz/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[2]/div/div/div[1]/div/div/div[1]/div/div[1]/div/input"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element HTTP/1.1" 200 88
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/adf2af43-b873-4a1b-811e-9eb2e0270bcb/click {"id": "adf2af43-b873-4a1b-811e-9eb2e0270bcb"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/adf2af43-b873-4a1b-811e-9eb2e0270bcb/click HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/timeouts {"implicit": 2000}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/timeouts HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/adf2af43-b873-4a1b-811e-9eb2e0270bcb/value {"text": "2022-08-02", "value": ["2", "0", "2", "2", "-", "0", "8", "-", "0", "2"], "id": "adf2af43-b873-4a1b-811e-9eb2e0270bcb"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/adf2af43-b873-4a1b-811e-9eb2e0270bcb/value HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element/adf2af43-b873-4a1b-811e-9eb2e0270bcb/value {"text": "\ue007", "value": ["\ue007"], "id": "adf2af43-b873-4a1b-811e-9eb2e0270bcb"}
+DEBUG: http://127.0.0.1:55025 "POST /session/462778a7506caca86421ab9faeb1a1aa/element/adf2af43-b873-4a1b-811e-9eb2e0270bcb/value HTTP/1.1" 200 14
+DEBUG: Finished Request
+INFO: Received SIGINT, shutting down gracefully. Send again to force 
+INFO: Received SIGINT twice, forcing unclean shutdown
+DEBUG: POST http://127.0.0.1:55025/session/462778a7506caca86421ab9faeb1a1aa/element {"using": "xpath", "value": "//*[@id=\"ow62\"]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div"}
+DEBUG: Resetting dropped connection: 127.0.0.1
+DEBUG: Incremented Retry for (url='/session/462778a7506caca86421ab9faeb1a1aa/element'): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc865044460>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/462778a7506caca86421ab9faeb1a1aa/element
+DEBUG: Starting new HTTP connection (2): 127.0.0.1:55025
+DEBUG: Incremented Retry for (url='/session/462778a7506caca86421ab9faeb1a1aa/element'): Retry(total=1, connect=None, read=None, redirect=None, status=None)
+WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc865044be0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/462778a7506caca86421ab9faeb1a1aa/element
+DEBUG: Starting new HTTP connection (3): 127.0.0.1:55025
+DEBUG: Incremented Retry for (url='/session/462778a7506caca86421ab9faeb1a1aa/element'): Retry(total=0, connect=None, read=None, redirect=None, status=None)
+WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc8650770a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/462778a7506caca86421ab9faeb1a1aa/element
+DEBUG: Starting new HTTP connection (4): 127.0.0.1:55025
+ERROR: Spider error processing <GET http://quotes.toscrape.com> (referer: None)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/util/connection.py", line 84, in create_connection
+    raise err
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/util/connection.py", line 74, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connectionpool.py", line 392, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/client.py", line 1240, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/client.py", line 1286, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/client.py", line 1235, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/client.py", line 1006, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/client.py", line 946, in send
+    self.connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connection.py", line 187, in connect
+    conn = self._new_conn()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fc8650771f0>: Failed to establish a new connection: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/defer.py", line 132, in iter_errback
+    yield next(it)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/python.py", line 354, in __next__
+    return next(self.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/python.py", line 354, in __next__
+    return next(self.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/referer.py", line 342, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/urllength.py", line 40, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Users/matthewmaclean/flight_scraper/flight_scraper/spiders/flight_spider.py", line 155, in parse_prices
+    wait.until(EC.presence_of_element_located((By.XPATH, calendar_grid_base_XPATH)))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/support/wait.py", line 71, in until
+    value = method(self._driver)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/support/expected_conditions.py", line 64, in __call__
+    return _find_element(driver, self.locator)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/support/expected_conditions.py", line 411, in _find_element
+    return driver.find_element(*by)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 319, in execute
+    response = self.command_executor.execute(driver_command, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/remote_connection.py", line 374, in execute
+    return self._request(command_info[0], url, body=data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/remote_connection.py", line 397, in _request
+    resp = self._conn.request(method, url, body=body, headers=headers)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/request.py", line 79, in request
+    return self.request_encode_body(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/request.py", line 171, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/poolmanager.py", line 336, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connectionpool.py", line 754, in urlopen
+    return self.urlopen(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connectionpool.py", line 754, in urlopen
+    return self.urlopen(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connectionpool.py", line 754, in urlopen
+    return self.urlopen(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/urllib3/util/retry.py", line 439, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=55025): Max retries exceeded with url: /session/462778a7506caca86421ab9faeb1a1aa/element (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc8650771f0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+INFO: Number of open requests: 2
+DEBUG: POST http://127.0.0.1:55060/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "platformName": "any", "goog:chromeOptions": {"extensions": [], "args": ["headless"]}}}, "desiredCapabilities": {"browserName": "chrome", "version": "", "platform": "ANY", "goog:chromeOptions": {"extensions": [], "args": ["headless"]}}}
+DEBUG: Starting new HTTP connection (1): 127.0.0.1:55060
+DEBUG: http://127.0.0.1:55060 "POST /session HTTP/1.1" 200 800
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55060/session/eb840a0a91554e8f079196587f953601/url {"url": "https://www.google.com/travel/flights"}
+DEBUG: http://127.0.0.1:55060 "POST /session/eb840a0a91554e8f079196587f953601/url HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55060/session/eb840a0a91554e8f079196587f953601/timeouts {"implicit": 10000}
+DEBUG: http://127.0.0.1:55060 "POST /session/eb840a0a91554e8f079196587f953601/timeouts HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55060/session/eb840a0a91554e8f079196587f953601/element {"using": "xpath", "value": "//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[2]/div/div/button"}
+DEBUG: http://127.0.0.1:55060 "POST /session/eb840a0a91554e8f079196587f953601/element HTTP/1.1" 500 1950
+DEBUG: Finished Request
+ERROR: Spider error processing <GET http://quotes.toscrape.com> (referer: None)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/defer.py", line 132, in iter_errback
+    yield next(it)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/python.py", line 354, in __next__
+    return next(self.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/python.py", line 354, in __next__
+    return next(self.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/referer.py", line 342, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/urllength.py", line 40, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Users/matthewmaclean/flight_scraper/flight_scraper/spiders/flight_spider.py", line 110, in parse_prices
+    accept_cookies = driver.find_element_by_xpath(accept_cookies_XPATH)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+  (Session info: headless chrome=103.0.5060.134)
+
+INFO: Searching: LPL -> AGP
+DEBUG: Crawled (200) <GET http://quotes.toscrape.com> (referer: None)
+DEBUG: Crawled (200) <GET http://quotes.toscrape.com> (referer: None)
+INFO: Closing spider (shutdown)
+INFO: Number of open requests: 3
+DEBUG: POST http://127.0.0.1:55108/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "platformName": "any", "goog:chromeOptions": {"extensions": [], "args": ["headless"]}}}, "desiredCapabilities": {"browserName": "chrome", "version": "", "platform": "ANY", "goog:chromeOptions": {"extensions": [], "args": ["headless"]}}}
+DEBUG: Starting new HTTP connection (1): 127.0.0.1:55108
+DEBUG: http://127.0.0.1:55108 "POST /session HTTP/1.1" 200 800
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55108/session/01027ab181795cab84ae30e0954d8151/url {"url": "https://www.google.com/travel/flights"}
+DEBUG: http://127.0.0.1:55108 "POST /session/01027ab181795cab84ae30e0954d8151/url HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55108/session/01027ab181795cab84ae30e0954d8151/timeouts {"implicit": 10000}
+DEBUG: http://127.0.0.1:55108 "POST /session/01027ab181795cab84ae30e0954d8151/timeouts HTTP/1.1" 200 14
+DEBUG: Finished Request
+DEBUG: POST http://127.0.0.1:55108/session/01027ab181795cab84ae30e0954d8151/element {"using": "xpath", "value": "//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[2]/div/div/button"}
+DEBUG: http://127.0.0.1:55108 "POST /session/01027ab181795cab84ae30e0954d8151/element HTTP/1.1" 500 1950
+DEBUG: Finished Request
+ERROR: Spider error processing <GET http://quotes.toscrape.com> (referer: None)
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/defer.py", line 132, in iter_errback
+    yield next(it)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/python.py", line 354, in __next__
+    return next(self.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/utils/python.py", line 354, in __next__
+    return next(self.data)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/referer.py", line 342, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/urllength.py", line 40, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/spidermiddlewares/depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/scrapy/core/spidermw.py", line 66, in _evaluate_iterable
+    for r in iterable:
+  File "/Users/matthewmaclean/flight_scraper/flight_scraper/spiders/flight_spider.py", line 110, in parse_prices
+    accept_cookies = driver.find_element_by_xpath(accept_cookies_XPATH)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+  (Session info: headless chrome=103.0.5060.134)
+

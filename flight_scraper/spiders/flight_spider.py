@@ -1,12 +1,16 @@
 import scrapy
+from scrapy.utils.log import configure_logging 
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 from datetime import date, datetime
 import time
 import random
+import logging
 
 from flight_scraper.items import FlightScraperItem
 from run_sql import run_sql
@@ -17,8 +21,24 @@ from run_sql import run_sql
 class FlightSpider(scrapy.Spider):
     name = "flight_spider"
 
+    # Create log file 
+    configure_logging(install_root_handler=False)
+    logging.basicConfig(
+        filename='log.txt',
+        format='%(levelname)s: %(message)s',
+        level=logging.INFO,
+        filemode='w'
+    )
+
     # Using a dummy website to start scrapy request
     def start_requests(self):
+        # Log to file 
+        logging.info("REQUESTS STARTED")
+
+        # Parameters
+        global num_requests_open
+        num_requests_open = 0 
+
         # Retrieve airport routes from database
         sql = "SELECT origin_id, destination_id FROM airport_routes"
         routes = run_sql(sql)
@@ -27,19 +47,31 @@ class FlightSpider(scrapy.Spider):
 
         # To search single route
         #yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LHR', 'destination_city':'DXB'})
-        
+
         # Iterate over multiple origins
-        for i in range(0, 5):
+        # TODO - review 
+        # TODO - SPLIT SEARCH INTO BLOCKS
+        for i in range(0, len(routes)):
             # Output to terminal
             print(f"Searching: {routes[i][0]} -> {routes[i][1]}")
+            logging.info(f"Searching: {routes[i][0]} -> {routes[i][1]}")
 
-            # Set dont_filter to 'True' to allow multiple requests to be sent
+            # Set dont_filter to 'True' to allow concurrent requests to be sent
             yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=True, cb_kwargs={'source_city':routes[i][0], 'destination_city':routes[i][1]})
-            # Wait before proceeding to next loop - IMPORTANT
+
             time.sleep(random.randint(2, 5))
+            
+        # TODO - estimate time between blocks and set requests to sleep 
 
     def parse_prices(self, response, source_city, destination_city):
         #--------------------------------- Parameters ------------------------------------------
+        # Update request counter
+        global num_requests_open   
+        num_requests_open = num_requests_open + 1
+
+        print(f"Number of open requests: {num_requests_open}")
+        logging.info(f"Number of open requests: {num_requests_open}")
+
         # Inputs
         url = "https://www.google.com/travel/flights"
         departure_date = str(date.today())
@@ -60,10 +92,13 @@ class FlightSpider(scrapy.Spider):
         #driver = webdriver.Chrome()  
 
         # Create an instance of headless ChromeDriver
-        options = webdriver.ChromeOptions()
-        options.add_argument("headless")
-        desired_capabilities = options.to_capabilities()
-        driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        try:
+            options = webdriver.ChromeOptions()
+            options.add_argument("headless")
+            desired_capabilities = options.to_capabilities()
+            driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+        except Exception as error:
+            print(f"\n + {error} + \n")
 
         # Open page
         driver.get(url)
@@ -195,6 +230,17 @@ class FlightSpider(scrapy.Spider):
 
         #--------------------------------- Scraping ------------------------------------------
         time.sleep(30)
+
         # Quit driver
         driver.quit()
+
+        # Update request counter
+        # Update request counter   
+        print(f"Finished route: {source_city} -> {destination_city}")
+        logging.info(f"Finished route: {source_city} -> {destination_city}")
+
+        # Update number of open requests
+        num_requests_open = num_requests_open - 1
+        print(f"Number of open requests: {num_requests_open}")
+        logging.info(f"Number of open requests: {num_requests_open}")
              
