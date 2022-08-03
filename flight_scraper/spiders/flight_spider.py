@@ -1,3 +1,4 @@
+import numbers
 import scrapy
 from scrapy.utils.log import configure_logging 
 
@@ -30,18 +31,22 @@ class FlightSpider(scrapy.Spider):
         filemode='w'
     )
 
+    def __init__(self):
+        self.num_drivers_open = 0
+        self.start_program_time = datetime.now()
+        self.num_routes = 0
+        self.num_searched = 0
+        
+
     # Using a dummy website to start scrapy request
     def start_requests(self):
         # Log to file 
         logging.info("REQUESTS STARTED")
 
-        # Parameters
-        global num_requests_open
-        num_requests_open = 0 
-
         # Retrieve airport routes from database
         sql = "SELECT origin_id, destination_id FROM airport_routes"
         routes = run_sql(sql)
+        self.num_routes = len(routes)
 
         url = "http://quotes.toscrape.com"
 
@@ -49,29 +54,21 @@ class FlightSpider(scrapy.Spider):
         #yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=False, cb_kwargs={'source_city':'LHR', 'destination_city':'DXB'})
 
         # Iterate over multiple origins
-        # TODO - review 
-        # TODO - SPLIT SEARCH INTO BLOCKS
         for i in range(0, len(routes)):
             # Output to terminal
-            print(f"Searching: {routes[i][0]} -> {routes[i][1]}")
-            logging.info(f"Searching: {routes[i][0]} -> {routes[i][1]}")
+            print(f"Requesting: {routes[i][0]} -> {routes[i][1]}")
+            logging.info(f"Requesting: {routes[i][0]} -> {routes[i][1]}")
 
+            # Make scrapy request
             # Set dont_filter to 'True' to allow concurrent requests to be sent
             yield scrapy.Request(url=url, callback=self.parse_prices, dont_filter=True, cb_kwargs={'source_city':routes[i][0], 'destination_city':routes[i][1]})
 
+            # Pause before issuing next request
             time.sleep(random.randint(2, 5))
             
-        # TODO - estimate time between blocks and set requests to sleep 
 
     def parse_prices(self, response, source_city, destination_city):
         #--------------------------------- Parameters ------------------------------------------
-        # Update request counter
-        global num_requests_open   
-        num_requests_open = num_requests_open + 1
-
-        print(f"Number of open requests: {num_requests_open}")
-        logging.info(f"Number of open requests: {num_requests_open}")
-
         # Inputs
         url = "https://www.google.com/travel/flights"
         departure_date = str(date.today())
@@ -97,6 +94,12 @@ class FlightSpider(scrapy.Spider):
             options.add_argument("headless")
             desired_capabilities = options.to_capabilities()
             driver = webdriver.Chrome(desired_capabilities=desired_capabilities)
+
+            # Update number of open drivers
+            self.num_drivers_open = self.num_drivers_open + 1
+            print(f"Number of open drivers: {self.num_drivers_open}")
+            logging.info(f"Number of open drivers: {self.num_drivers_open}")
+
         except Exception as error:
             print(f"\n + {error} + \n")
 
@@ -222,25 +225,31 @@ class FlightSpider(scrapy.Spider):
 
             # Click button to pan through calendar
             if i < 12 and i % 2 == 0:
-                pan_calender = driver.find_element_by_xpath(calendar_button_XPATH)
-                pan_calender.click()
-                time.sleep(2)
-                pan_calender.click()
-                time.sleep(5)     
-
-        #--------------------------------- Scraping ------------------------------------------
-        time.sleep(30)
+                try:
+                    pan_calender = driver.find_element_by_xpath(calendar_button_XPATH)
+                    pan_calender.click()
+                    time.sleep(2)
+                    pan_calender.click()
+                    time.sleep(5)
+                except Exception as error:
+                    print(error)
+                    logging.error(error)   
 
         # Quit driver
         driver.quit()
 
-        # Update request counter
         # Update request counter   
         print(f"Finished route: {source_city} -> {destination_city}")
         logging.info(f"Finished route: {source_city} -> {destination_city}")
 
-        # Update number of open requests
-        num_requests_open = num_requests_open - 1
-        print(f"Number of open requests: {num_requests_open}")
-        logging.info(f"Number of open requests: {num_requests_open}")
+        # Update number of open drivers
+        self.num_drivers_open = self.num_drivers_open - 1
+        logging.info(f"Number of open drivers: {self.num_drivers_open}")
+
+        # Update searched count and estimate time to finish
+        self.num_searched = self.num_searched + 1
+        elapsed_time = datetime.now() - self.start_program_time
+        avg_run_time = elapsed_time / self.num_searched
+
+        logging.info(f"Elapsed time: {elapsed_time} \n Average run time: {avg_run_time} \n Est. time to finish {(self.num_routes - self.num_searched)*avg_run_time} \n {self.num_routes - self.num_searched} routes remaining")
              
